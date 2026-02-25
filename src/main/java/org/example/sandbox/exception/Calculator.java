@@ -2,21 +2,37 @@ package org.example.sandbox.exception;
 
 public class Calculator {
 
-    public int divide(int numerator, int denominator) throws DivideByZeroException {
-        if (denominator == 0) {
-            throw new DivideByZeroException("Cannot divide by zero.");
+    public int divide(int a, int b) throws DivideByZeroException {
+
+        int result = Integer.MIN_VALUE;
+        try {
+            result = a / b;
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException caught: " + e.getMessage());
+            throw new DivideByZeroException("Cannot divide by zero", e);
         }
-        return numerator / denominator;
-
-
+        return result;
     }
 
-    public int safeDivide(int numerator, int denominator) {
+    public int safeDivide(int a, int b) {
+
+
         try {
-            return divide(numerator, denominator);
+            return divide(a, b);
         } catch (DivideByZeroException e) {
-            System.err.println("Error: " + e.getMessage());
-            return 0; // Return a default value or handle as needed
+            e.printStackTrace();
         }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+
+        int result1 = calculator.safeDivide(10, 2);
+        System.out.println("Result of 10 / 2: " + result1);
+
+        int result2 = calculator.safeDivide(10, 0);
+        System.out.println("Result of 10 / 0: " + result2);
+
     }
 }

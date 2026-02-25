@@ -3,62 +3,67 @@ package org.example.sandbox.exception;
 import java.util.Scanner;
 
 public class HelloException {
+
     public static void main(String[] args) {
 
-        // try-catch block to handle exceptions
+        // try-catch block to handle the exception
         try {
             // do something that may throw an exception
         } catch (Exception e) {
-            System.out.println("Caught an exception: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         // do something else
 
         // try-catch-catch block to handle multiple exceptions
         try {
+            // do something that may throw an exception
         } catch (NullPointerException e) {
-            System.out.println("Null pointer exception occured: " + e.getMessage());
-
+            System.out.println("Null pointer exception occurred: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("An exception occured: " + e.getMessage());
+            System.out.println("An exception occurred: " + e.getMessage());
         }
 
-        // try-catch-finally block to ensure some code always runs
+        // try-catch-finally block to ensure that the finally block is executed
         try {
+            // do something that may throw an exception
         } catch (Exception e) {
-            System.out.println("An exception occured: " + e.getMessage());
+            System.out.println(e.getMessage());
         } finally {
-            System.out.println("This will always run, regardless of exceptions.");
+            System.out.println("This will always be executed.");
         }
-
         // do something else
 
-        //try-finally block to ensure some code always runs, even without catch
+        // try-finally block to ensure that the finally block is executed even if an exception is not caught
         try {
             // do something that may throw an exception
         } finally {
-            System.out.println("This will always run, even if an exception is thrown.");
+            System.out.println("This will always be executed.");
         }
 
-        // java 7 multi-catch block to handle multiple exceptions in a single catch
+        // java 7 multi-catch block to handle multiple exceptions in a single catch block
         try {
             // do something that may throw an exception
-        } catch (NullPointerException | IllegalArgumentException | ArithmeticException e) {
-            System.out.println("An exception occured: " + e.getMessage());
+        } catch (ArithmeticException | NullPointerException | NumberFormatException e) {
+            System.out.println("An exception occurred: " + e.getMessage());
         }
 
         // try-with-resources block to automatically close resources
-        try (Scanner scanner = new Scanner(System.in)) {
-            // do something with the scanner that may throw an exception
+        try (Scanner scanner = new Scanner(System.in);
+             Scanner anotherScanner = new Scanner(System.in)) {
+            // do something with the scanner
         }
+
         Scanner scanner2 = null;
         try {
             scanner2 = new Scanner(System.in);
-            // do something with the scanner that may throw an exception
+            // do something with the scanner
         } finally {
             if (scanner2 != null) {
                 scanner2.close();
             }
         }
+
+
     }
 }
