@@ -19,5 +19,10 @@ public class CollectionsDemo {
         Queue<String> queue = new PriorityQueue<String>();
         Collection<String> queue2 = new PriorityQueue<String>();
 
+        // Maps
+        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map2 = new LinkedHashMap<String, String>();
+        Map<String, String> map3 = new TreeMap<String, String>();
+
     }
 }
